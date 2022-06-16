@@ -1,3 +1,7 @@
+:root {
+  --amin: linear-gradient(to right, #8e2de2, #4a00e0);
+}
+
 .uploaderWrapper {
   display: flex;
   flex-direction: column;
@@ -10,6 +14,7 @@
   height: 250px;
   width: 400px;
   border-radius: 5px;
+  background-color: white;
 }
 
 /* Image */
@@ -52,7 +57,7 @@
   align-items: center;
   flex-direction: column;
   border-radius: 5px;
-  border: 2px dashed blue;
+  border: 2px dashed blueviolet;
   text-align: center;
   color: blue;
 }
@@ -80,28 +85,29 @@
 
 .btnUpload {
   padding: 10px;
-  background-color: blueviolet;
+  background: var(--amin);
   border-radius: 20px;
   cursor: pointer;
   margin-bottom: 20px;
+  font-weight: 550;
 }
 
 /* Submit */
 
-.submitImg {
+.submitBtn {
   padding: 10px;
-  background-color: blue;
+  background: var(--amin);
   border-radius: 20px;
   cursor: pointer;
   font-size: 1.1rem;
   font-weight: 600;
+  height: 38px;
 }
 
-.linkToImg {
-  padding: 5px;
-  background-color: blue;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 600;
+/* Loader */
+
+.loaderStyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

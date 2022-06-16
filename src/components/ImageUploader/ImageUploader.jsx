@@ -1,14 +1,17 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useRef, useState } from "react";
-import { GiCrossMark } from "react-icons/gi";
+import { ImCross } from "react-icons/im";
 import { TbFileUpload } from "react-icons/tb";
 import { v4 } from "uuid";
 import { storage } from "../../firebase/config";
+import { Loader } from "../Loader/Loader";
 import cl from "./ImageUploader.module.css";
 export const ImageUploader = () => {
   const [img, setImg] = useState("");
   const [imgFile, setImgFile] = useState();
   const [url, setUrl] = useState("");
+  const [loadingUrl, setLoadingUrl] = useState(false);
+  const [showUrl, setShowUrl] = useState(false);
   const imageRef = useRef();
   const storageImgRef = ref(storage, `/imgs/${v4()}`);
 
@@ -16,6 +19,7 @@ export const ImageUploader = () => {
     // @ts-ignore
     const file = imageRef.current.files[0];
     if (file) {
+      setShowUrl(false);
       setImgFile(file);
       setUrl("");
       const reader = new FileReader();
@@ -31,15 +35,19 @@ export const ImageUploader = () => {
   };
 
   const uploadToStorage = () => {
+    setShowUrl(true);
+    setLoadingUrl(true);
     // @ts-ignore
     uploadBytes(storageImgRef, imgFile).then((response) => {
       getDownloadURL(response.ref).then((url) => {
         setUrl(url);
+        setLoadingUrl(false);
       });
     });
+    setImg("");
+
     // @ts-ignore
     imageRef.current.value = "";
-    setImg("");
 
     setImgFile(undefined);
   };
@@ -59,7 +67,7 @@ export const ImageUploader = () => {
               }}
               className={cl.imgCloseIcon}
             >
-              <GiCrossMark />
+              <ImCross />
             </div>
           </div>
         ) : (
@@ -72,7 +80,6 @@ export const ImageUploader = () => {
           </div>
         )}
       </div>
-
       <label className={cl.uploadLabel}>
         <input
           onChange={uploadToHTML}
@@ -83,17 +90,23 @@ export const ImageUploader = () => {
         />
         <div className={cl.btnUpload}>CHOOSE FILE</div>
       </label>
-
       {img !== "" ? (
-        <div onClick={uploadToStorage} className={cl.submitImg}>
-          Submit
+        <div onClick={uploadToStorage} className={cl.submitBtn}>
+          Upload
         </div>
       ) : null}
 
-      {url !== "" ? (
-        <a target="_blank" href={url} className={cl.linkToImg}>
-          Get uploaded image
-        </a>
+      {showUrl ? (
+        loadingUrl ? (
+          <div className={`${cl.submitBtn} ${cl.loaderStyle}`}>
+            <Loader />
+            <p>Loading</p>
+          </div>
+        ) : (
+          <a target="_blank" href={url} className={cl.submitBtn}>
+            Get uploaded image
+          </a>
+        )
       ) : null}
     </div>
   );

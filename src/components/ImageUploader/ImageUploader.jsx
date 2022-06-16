@@ -1,4 +1,4 @@
-import { ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useRef, useState } from "react";
 import { GiCrossMark } from "react-icons/gi";
 import { TbFileUpload } from "react-icons/tb";
@@ -8,6 +8,7 @@ import cl from "./ImageUploader.module.css";
 export const ImageUploader = () => {
   const [img, setImg] = useState("");
   const [imgFile, setImgFile] = useState();
+  const [url, setUrl] = useState("");
   const imageRef = useRef();
   const storageImgRef = ref(storage, `/imgs/${v4()}`);
 
@@ -30,7 +31,11 @@ export const ImageUploader = () => {
 
   const uploadToStorage = () => {
     // @ts-ignore
-    uploadBytes(storageImgRef, imgFile);
+    uploadBytes(storageImgRef, imgFile).then((response) => {
+      getDownloadURL(response.ref).then((url) => {
+        setUrl(url);
+      });
+    });
     // @ts-ignore
     imageRef.current.value = "";
     setImg("");
@@ -82,6 +87,12 @@ export const ImageUploader = () => {
         <div onClick={uploadToStorage} className={cl.submitImg}>
           Submit
         </div>
+      ) : null}
+
+      {url !== "" ? (
+        <a target="_blank" href={url} className={cl.linkToImg}>
+          Get uploaded image
+        </a>
       ) : null}
     </div>
   );

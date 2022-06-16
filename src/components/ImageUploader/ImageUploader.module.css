@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  color: white;
 }
 
 .imgWrapper {
@@ -79,7 +80,6 @@
 
 .btnUpload {
   padding: 10px;
-  color: white;
   background-color: blueviolet;
   border-radius: 20px;
   cursor: pointer;
@@ -90,7 +90,15 @@
 
 .submitImg {
   padding: 10px;
-  color: white;
+  background-color: blue;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.linkToImg {
+  padding: 5px;
   background-color: blue;
   border-radius: 20px;
   cursor: pointer;

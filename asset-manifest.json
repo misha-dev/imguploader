@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/imguploader/static/css/main.88fab58c.css",
+    "main.js": "/imguploader/static/js/main.91bc383a.js",
+    "index.html": "/imguploader/index.html",
+    "main.88fab58c.css.map": "/imguploader/static/css/main.88fab58c.css.map",
+    "main.91bc383a.js.map": "/imguploader/static/js/main.91bc383a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.88fab58c.css",
+    "static/js/main.91bc383a.js"
+  ]
+}

@@ -48,7 +48,6 @@ export const ImageUploader = () => {
         setLoadingUrl(false);
       });
     });
-    setImg("");
 
     // @ts-ignore
     imageRef.current.value = "";
@@ -108,7 +107,7 @@ export const ImageUploader = () => {
         />
         <div className={cl.btnUpload}>CHOOSE FILE</div>
       </label>
-      {img !== "" ? (
+      {img !== "" && !showUrl ? (
         <div onClick={uploadToStorage} className={cl.submitBtn}>
           Upload
         </div>

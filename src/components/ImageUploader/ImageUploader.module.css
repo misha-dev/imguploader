@@ -8,11 +8,23 @@
   justify-content: center;
   text-align: center;
   color: white;
+  width: 400px;
+}
+
+.headText {
+  color: blue;
+  font-size: 2.2rem;
+  line-height: 2.3rem;
+  margin-top: -30px;
+}
+
+.headText span {
+  color: blueviolet;
+  font-style: italic;
 }
 
 .imgWrapper {
   height: 250px;
-  width: 400px;
   border-radius: 5px;
   background-color: white;
 }
@@ -110,4 +122,68 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* URL */
+
+.urls {
+  display: flex;
+  flex-direction: column;
+}
+
+/* URL handle Copy */
+
+.urls a {
+  margin-bottom: 20px;
+}
+
+.urls input {
+  background-color: transparent;
+  width: 80%;
+  cursor: pointer;
+}
+
+.copyText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 5px;
+  border-radius: 35px;
+  position: relative;
+  cursor: pointer;
+}
+
+.copyText.active {
+  background-color: rgba(35, 0, 253, 0.8);
+}
+
+.copyText.active::before {
+  display: block;
+}
+
+.copyText::before {
+  content: "Copied!";
+  font-size: 1.2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: black;
+  border-radius: 35px;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.iconCopy {
+  background-color: #edecee;
+  border-radius: 5px;
+  width: 25px;
+  height: 25px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: blue;
+  margin-left: 10px;
+  cursor: pointer;
 }

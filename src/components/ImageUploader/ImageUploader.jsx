@@ -1,5 +1,7 @@
+// @ts-nocheck
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useRef, useState } from "react";
+import { FaRegCopy } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { TbFileUpload } from "react-icons/tb";
 import { v4 } from "uuid";
@@ -13,7 +15,9 @@ export const ImageUploader = () => {
   const [loadingUrl, setLoadingUrl] = useState(false);
   const [showUrl, setShowUrl] = useState(false);
   const imageRef = useRef();
+  const urlRef = useRef();
   const storageImgRef = ref(storage, `/imgs/${v4()}`);
+  const [copyTextValues, setCopyTextValues] = useState([cl.copyText]);
 
   const uploadToHTML = () => {
     // @ts-ignore
@@ -51,8 +55,22 @@ export const ImageUploader = () => {
 
     setImgFile(undefined);
   };
+
+  const copyToClickBoard = () => {
+    // @ts-ignore
+    navigator.clipboard.writeText(urlRef.current.value);
+    setCopyTextValues([...copyTextValues, cl.active]);
+
+    setTimeout(() => {
+      setCopyTextValues([cl.copyText]);
+    }, 1000);
+  };
+
   return (
     <div className={cl.uploaderWrapper}>
+      <div className={cl.headText}>
+        Upload <span>IMAGE</span> get <span>LINK</span>
+      </div>
       <div className={cl.imgWrapper}>
         {img !== "" ? (
           <div className={cl.imagePlace}>
@@ -103,9 +121,20 @@ export const ImageUploader = () => {
             <p>Loading</p>
           </div>
         ) : (
-          <a target="_blank" href={url} className={cl.submitBtn}>
-            Get uploaded image
-          </a>
+          <div className={cl.urls}>
+            <a target="_blank" href={url} className={cl.submitBtn}>
+              Get uploaded image
+            </a>
+            <div
+              onClick={copyToClickBoard}
+              className={copyTextValues.join(" ")}
+            >
+              <input ref={urlRef} disabled value={url} type="text" />
+              <div className={cl.iconCopy}>
+                <FaRegCopy />
+              </div>
+            </div>
+          </div>
         )
       ) : null}
     </div>

@@ -17,6 +17,7 @@ export const ImageUploader = () => {
     const file = imageRef.current.files[0];
     if (file) {
       setImgFile(file);
+      setUrl("");
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.addEventListener("load", () => {

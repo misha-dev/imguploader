@@ -80,6 +80,8 @@ export const ImageUploader = () => {
                 imageRef.current.value = "";
                 // @ts-ignore
                 setImg("");
+                setShowUrl(false);
+                setUrl("");
                 setImgFile(undefined);
               }}
               className={cl.imgCloseIcon}

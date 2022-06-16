@@ -119,7 +119,7 @@ export const ImageUploader = () => {
         loadingUrl ? (
           <div className={`${cl.submitBtn} ${cl.loaderStyle}`}>
             <Loader />
-            <p>Loading</p>
+            <p>Uploading</p>
           </div>
         ) : (
           <div className={cl.urls}>

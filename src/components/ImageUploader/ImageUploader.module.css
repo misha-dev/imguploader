@@ -187,3 +187,12 @@
   margin-left: 10px;
   cursor: pointer;
 }
+
+@media (max-width: 500px) {
+  .uploaderWrapper {
+    width: 350px;
+  }
+  .imgWrapper {
+    height: 200px;
+  }
+}

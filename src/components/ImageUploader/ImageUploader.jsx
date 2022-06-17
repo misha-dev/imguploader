@@ -9,12 +9,17 @@ import { storage } from "../../firebase/config";
 import { Loader } from "../Loader/Loader";
 import cl from "./ImageUploader.module.css";
 export const ImageUploader = () => {
+  // Img data url for html Showing
   const [img, setImg] = useState("");
+  // File for uploading to firebase storage
   const [imgFile, setImgFile] = useState();
+  // url to to the file in firebase storage
   const [url, setUrl] = useState("");
   const [loadingUrl, setLoadingUrl] = useState(false);
   const [showUrl, setShowUrl] = useState(false);
+  // reference to update image in HTML
   const imageRef = useRef();
+  // ref for copying link to the clipboard
   const urlRef = useRef();
   const storageImgRef = ref(storage, `/imgs/${v4()}`);
   const [copyTextValues, setCopyTextValues] = useState([cl.copyText]);

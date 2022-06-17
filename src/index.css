@@ -6,6 +6,7 @@
   margin: 0;
   border: 0;
   font-family: "Sora", sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 *,
 *:before,
@@ -18,9 +19,10 @@
 :active {
   outline: none;
 }
+
 a:focus,
 a:active {
-  outline: none;
+  outline: 0;
   text-decoration: none;
 }
 nav,

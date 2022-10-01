@@ -1,4 +1,4 @@
-# Fortnite shop :computer:
+# Image uploader :computer:
 
 ## Web page: [Image uploader:link:](https://misha-dev.github.io/imguploader/)
 

@@ -5,8 +5,10 @@ import { FaRegCopy } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { TbFileUpload } from "react-icons/tb";
 import { v4 } from "uuid";
+
 import { storage } from "../../firebase/config";
 import { Loader } from "../Loader/Loader";
+
 import cl from "./ImageUploader.module.css";
 export const ImageUploader = () => {
   // Img data url for html Showing
@@ -128,13 +130,10 @@ export const ImageUploader = () => {
           </div>
         ) : (
           <div className={cl.urls}>
-            <a target="_blank" href={url} className={cl.submitBtn}>
+            <a target="_blank" href={url} className={cl.submitBtn} rel="noreferrer">
               Get uploaded image
             </a>
-            <div
-              onClick={copyToClickBoard}
-              className={copyTextValues.join(" ")}
-            >
+            <div onClick={copyToClickBoard} className={copyTextValues.join(" ")}>
               <input ref={urlRef} disabled value={url} type="text" />
               <div className={cl.iconCopy}>
                 <FaRegCopy />
